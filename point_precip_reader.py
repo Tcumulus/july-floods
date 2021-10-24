@@ -6,7 +6,7 @@ import os
 runs = [{"day": 12, "run": 12}, {"day": 12, "run": 18},
         {"day": 13, "run": 0}, {"day": 13, "run": 6}]
 
-x, y = 578, 287
+x, y = 550, 350
 l, labels = [], []
 
 colors = [{"color": (240, 240, 240), "value": 0},
@@ -67,5 +67,4 @@ plt.title(f"+48h precipitation prevision for {x}, {y}")
 plt.ylabel("precipitation (mm)")
 plt.boxplot(
     l, labels=labels, medianprops=medianprops, flierprops=flierprops)
-# showmeans=True, meanprops=meanlineprops, meanline=True)
 plt.show()

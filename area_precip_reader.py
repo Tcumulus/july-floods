@@ -3,9 +3,12 @@ import matplotlib.pyplot as plt
 import os
 
 # input
-runs = [{"day": 12, "run": 12}, {"day": 12, "run": 18},
-        {"day": 13, "run": 0}, {"day": 13, "run": 6}]
+runs = [{"day": 12, "run": 0}, {"day": 12, "run": 6},
+        {"day": 12, "run": 12}, {"day": 12, "run": 18},
+        {"day": 13, "run": 0}, {"day": 13, "run": 6},
+        {"day": 13, "run": 12}, {"day": 13, "run": 18}]
 
+# init
 l, nxl, nnl, labels = [], [], [], []
 l100, l150, l200 = [], [], []
 
@@ -43,7 +46,7 @@ for run in runs:
     day = run["day"]
     runz = run["run"]
     pathTo = f"C:/Users/Maarten/Documents/Onderzoek/data/+48/{day}J/{runz}z"
-    labels.append(f"{day}.07 {runz}UTC")
+    labels.append(f"{day}-{runz}z")
 
     # GFS, ECMWF (0,12), ARPEGE, SWISSHD, EC-SWISSHD, GEM (0,12), HARMONIE
     for filename in os.listdir(pathTo):
@@ -61,8 +64,8 @@ for run in runs:
 
             while x <= end:
                 # check for invalid pixels
-                if im[x, y] != (0, 0, 0) or im[x, y] != (170, 170, 170) or im[x, y] != (255, 255, 255):
-                    pix = im[x, y]
+                pix = im[x, y]
+                if pix != (0, 0, 0) or pix != (170, 170, 170) or pix != (255, 255, 255):
                     # compare pixel with list
                     for color in colors:
                         if pix == color["color"]:
@@ -92,14 +95,13 @@ for run in runs:
     l200.append(model200)
 
 # style
-# meanlineprops = {"linestyle": '--', "linewidth": 2, "color": '#128ba3'}
 medianprops = {"linestyle": '-', "linewidth": 2, "color": 'black'}
 flierprops = {"marker": "o", "markerfacecolor": "black", "markersize": 4}
 
-plt.title(f"+48h max precipipation prevision")
+plt.title(f"average area precipitation over +48h")
 plt.ylabel("precipitation (mm)")
+
 # Choose var: l = avg, nxl = max, nnl = min, l100 = percentage points with > 100mm
-plt.boxplot(l200, labels=labels, medianprops=medianprops,
+plt.boxplot(l, labels=labels, medianprops=medianprops,
             flierprops=flierprops)
-# showmeans=True, meanprops=meanlineprops, meanline=True)
 plt.show()
