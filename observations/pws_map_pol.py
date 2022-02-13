@@ -23,7 +23,11 @@ zi = griddata((x, y), z, (xi, yi), method='linear')
 # plot
 gdf = gpd.read_file(
     "C:/Users/Maarten/Documents/Onderzoek/observations/shapefile/provinces_L08.shp")
-gdf.to_crs(epsg=4326).plot(color='lightgrey', edgecolor="black")
+rivers = gpd.read_file(
+    "C:/Users/Maarten/Documents/Onderzoek/observations/shapefile/Hydro_08.shp")
+
+ax = gdf.to_crs(epsg=4326).plot(color='lightgrey', edgecolor="black")
+rivers.to_crs(epsg=4326).plot(ax=ax, edgecolor="dodgerblue", alpha=0.5)
 
 plt.contourf(xi, yi, zi, np.arange(0, max(z), round(max(z)/10, 1)), alpha=0.7)
 plt.title(f"Precipitation {date}")
