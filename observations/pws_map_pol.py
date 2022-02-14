@@ -4,9 +4,9 @@ import geopandas as gpd
 from scipy.interpolate import griddata
 import matplotlib.pyplot as plt
 
-date = "20210712"
+date = "20210713"
 data = pd.read_csv(
-    f"C:/Users/Maarten/Documents/Onderzoek/observations/precipitation_{date}.txt", delimiter="\t")
+    f"C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_{date}_v.txt", delimiter="\t")
 
 y = np.array(data["latitude"])
 x = np.array(data["longitude"])
