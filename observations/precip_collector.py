@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 
 validated_station_id, precipitation, lats, lons = [], [], [], []
-date = "20210714"
+date = "20210715"
 
 data = pd.read_csv(
     "C:/Users/Maarten/Documents/Onderzoek/observations/data/pws.txt", delimiter="\t")

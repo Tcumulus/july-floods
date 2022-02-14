@@ -3,10 +3,13 @@ import pandas as pd
 import geopandas as gpd
 from scipy.interpolate import griddata
 import matplotlib.pyplot as plt
+from matplotlib import cm
 
 date = "20210714"
 data = pd.read_csv(
     f"C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_{date}_v.txt", delimiter="\t")
+# data = pd.read_csv(
+#    "C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_cumulative.txt", delimiter="\t")
 
 y = np.array(data["latitude"])
 x = np.array(data["longitude"])
@@ -27,9 +30,10 @@ rivers = gpd.read_file(
     "C:/Users/Maarten/Documents/Onderzoek/observations/shapefile/Hydro_08.shp")
 
 ax = gdf.to_crs(epsg=4326).plot(color='lightgrey', edgecolor="black")
-#rivers.to_crs(epsg=4326).plot(ax=ax, edgecolor="dodgerblue", alpha=0.5)
+rivers.to_crs(epsg=4326).plot(ax=ax, edgecolor="gray", alpha=0.5)
 
-plt.contourf(xi, yi, zi, np.arange(0, max(z), round(max(z)/10, 1)), alpha=0.8)
+plt.contourf(xi, yi, zi, np.arange(0, 220, 20),
+             alpha=0.8, cmap=cm.jet)
 plt.title(f"Precipitation {date}")
 plt.colorbar(label="precipitation (mm)")
 plt.xlabel("lat (°)")
