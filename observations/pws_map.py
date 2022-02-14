@@ -4,7 +4,7 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 from shapely.geometry import Point, Polygon
 
-date = "20210713"
+date = "20210714"
 
 data = pd.read_csv(
     f"C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_{date}_v.txt", delimiter="\t")
