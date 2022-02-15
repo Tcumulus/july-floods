@@ -5,11 +5,11 @@ from scipy.interpolate import griddata
 import matplotlib.pyplot as plt
 from matplotlib import cm
 
-date = "20210714"
+date = "20210715"
 data = pd.read_csv(
     f"C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_{date}_v.txt", delimiter="\t")
-# data = pd.read_csv(
-#    "C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_cumulative.txt", delimiter="\t")
+data = pd.read_csv(
+    "C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_full.txt", delimiter="\t")
 
 y = np.array(data["latitude"])
 x = np.array(data["longitude"])
@@ -30,11 +30,12 @@ rivers = gpd.read_file(
     "C:/Users/Maarten/Documents/Onderzoek/observations/shapefile/Hydro_08.shp")
 
 ax = gdf.to_crs(epsg=4326).plot(color='lightgrey', edgecolor="black")
-rivers.to_crs(epsg=4326).plot(ax=ax, edgecolor="gray", alpha=0.5)
+#rivers.to_crs(epsg=4326).plot(ax=ax, edgecolor="gray", alpha=0.3)
 
-plt.contourf(xi, yi, zi, np.arange(0, 220, 20),
-             alpha=0.8, cmap=cm.jet)
-plt.title(f"Precipitation {date}")
+plt.contourf(xi, yi, zi, np.arange(0, 280, 20),
+             alpha=0.7, cmap=cm.jet, extend='max')
+#plt.title(f"Precipitation {date}")
+plt.title("precipitation 20210712-15")
 plt.colorbar(label="precipitation (mm)")
 plt.xlabel("lat (°)")
 plt.ylabel("lon (°)")

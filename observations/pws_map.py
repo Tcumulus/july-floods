@@ -4,10 +4,10 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 from shapely.geometry import Point, Polygon
 
-date = "20210714"
+date = "20210715"
 
 data = pd.read_csv(
-    f"C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_{date}_v.txt", delimiter="\t")
+    f"C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_{date}.txt", delimiter="\t")
 
 crs = {'init': 'EPSG:4326'}
 geometry = [Point(xy) for xy in zip(data['longitude'], data['latitude'])]
