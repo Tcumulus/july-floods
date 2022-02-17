@@ -8,8 +8,6 @@ from matplotlib import cm
 date = "20210715"
 data = pd.read_csv(
     f"C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_{date}_v.txt", delimiter="\t")
-data = pd.read_csv(
-    "C:/Users/Maarten/Documents/Onderzoek/observations/data/precipitation_full.txt", delimiter="\t")
 
 y = np.array(data["latitude"])
 x = np.array(data["longitude"])
@@ -39,4 +37,4 @@ plt.title("precipitation 20210712-15")
 plt.colorbar(label="precipitation (mm)")
 plt.xlabel("lat (°)")
 plt.ylabel("lon (°)")
-plt.show()
+plt.savefig(f"plot_{date}")
