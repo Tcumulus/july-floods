@@ -1,5 +1,10 @@
 import pandas as pd
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.environ.get("API_KEY")
 
 validated_station_id, precipitation, lats, lons = [], [], [], []
 date = "20210715"
@@ -11,7 +16,7 @@ station_ids = data["stationId"].tolist()
 
 for station_id in station_ids:
     response = requests.get(
-        f"https://api.weather.com/v2/pws/history/daily?stationId={station_id}&format=json&units=m&date={date}&apiKey=2b269bf9fe864282a69bf9fe86e28259&numericPrecision=decimal")
+        f"https://api.weather.com/v2/pws/history/daily?stationId={station_id}&format=json&units=m&date={date}&apiKey={API_KEY}&numericPrecision=decimal")
     response = response.json()
     response = response["observations"]
     if len(response) > 0:
