@@ -32,8 +32,8 @@ ax = gdf.to_crs(epsg=4326).plot(color='lightgrey', edgecolor="black")
 
 plt.contourf(xi, yi, zi, np.arange(0, 280, 20),
              alpha=0.7, cmap=cm.jet, extend='max')
-#plt.title(f"Precipitation {date}")
-plt.title("precipitation 20210712-15")
+plt.title(f"Precipitation {date}")
+#plt.title("precipitation 20210713")
 plt.colorbar(label="precipitation (mm)")
 plt.xlabel("lat (°)")
 plt.ylabel("lon (°)")
